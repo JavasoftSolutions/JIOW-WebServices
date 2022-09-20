@@ -1,7 +1,7 @@
 package solutions.javasoft.dao.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 import solutions.javasoft.dao.model.Product;
 
-public interface ProductRepository extends JpaRepository<Product, String> {
+public interface ProductRepository extends CrudRepository<Product, String> {
 }

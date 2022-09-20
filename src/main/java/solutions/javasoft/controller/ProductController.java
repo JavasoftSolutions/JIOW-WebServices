@@ -14,9 +14,9 @@ public class ProductController {
 
     @Autowired
     private ProductRepository productRepository;
+
     @PostMapping
     public Product createProduct(@RequestBody Product product) {
         return productRepository.save(product);
     }
-
 }

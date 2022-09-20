@@ -3,18 +3,10 @@ package solutions.javasoft.dto;
 import java.math.BigDecimal;
 
 public class PriceListDto {
-    private String productCode;
     private String name;
     private String description;
     private BigDecimal price;
-
-    public String getProductCode() {
-        return productCode;
-    }
-
-    public void setProductCode(String productCode) {
-        this.productCode = productCode;
-    }
+    private String productCode;
 
     public String getName() {
         return name;
@@ -38,5 +30,13 @@ public class PriceListDto {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public String getProductCode() {
+        return productCode;
+    }
+
+    public void setProductCode(String productCode) {
+        this.productCode = productCode;
     }
 }

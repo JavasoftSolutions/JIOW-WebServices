@@ -1,19 +1,23 @@
 package solutions.javasoft.dao.model;
 
-import javax.persistence.*;
-import java.math.BigDecimal;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.List;
 
 @Entity
 public class Product {
-
     @Id
     private String id;
     private String name;
     private String description;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private List<PriceList> priceLists;
+    private List<PriceList> priceList;
 
     public String getId() {
         return id;
@@ -39,11 +43,11 @@ public class Product {
         this.description = description;
     }
 
-    public List<PriceList> getPriceLists() {
-        return priceLists;
+    public List<PriceList> getPriceList() {
+        return priceList;
     }
 
-    public void setPriceLists(List<PriceList> priceLists) {
-        this.priceLists = priceLists;
+    public void setPriceList(List<PriceList> priceList) {
+        this.priceList = priceList;
     }
 }

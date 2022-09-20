@@ -1,8 +1,7 @@
 package solutions.javasoft.dao.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 import solutions.javasoft.dao.model.PriceList;
 
-public interface PriceListRepository extends JpaRepository<PriceList, Long> {
-
+public interface PriceListRepository extends CrudRepository<PriceList, Long> {
 }

@@ -1,13 +1,10 @@
 package solutions.javasoft.dao.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
 public class PriceList {
-
     @Id
     @GeneratedValue
     private Long id;
@@ -17,7 +14,6 @@ public class PriceList {
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id")
-    @JsonIgnore
     private Product product;
 
     public Long getId() {
@@ -44,19 +40,19 @@ public class PriceList {
         this.description = description;
     }
 
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
     public BigDecimal getPrice() {
         return price;
     }
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }

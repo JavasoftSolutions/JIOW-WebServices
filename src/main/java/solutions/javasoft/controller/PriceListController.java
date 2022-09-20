@@ -11,7 +11,7 @@ import solutions.javasoft.dao.repository.PriceListRepository;
 import solutions.javasoft.dao.repository.ProductRepository;
 import solutions.javasoft.dto.PriceListDto;
 
-import javax.transaction.Transactional;
+import java.util.Optional;
 
 @RequestMapping("priceList")
 @RestController
@@ -24,13 +24,16 @@ public class PriceListController {
     private ProductRepository productRepository;
 
     @PostMapping
-    public PriceList createPriceList(@RequestBody PriceListDto priceListDto) {
-        Product product = productRepository.getById(priceListDto.getProductCode());
+    public Optional<PriceList> createPriceList(@RequestBody PriceListDto priceListDto) {
+        Optional<Product> product = productRepository.findById(priceListDto.getProductCode());
+        if (!product.isPresent()) {
+            return Optional.empty();
+        }
         PriceList priceList = new PriceList();
         priceList.setPrice(priceListDto.getPrice());
         priceList.setName(priceListDto.getName());
         priceList.setDescription(priceListDto.getDescription());
-        priceList.setProduct(product);
-        return priceListRepository.save(priceList);
+        priceList.setProduct(product.get());
+        return Optional.of(priceListRepository.save(priceList));
     }
 }
