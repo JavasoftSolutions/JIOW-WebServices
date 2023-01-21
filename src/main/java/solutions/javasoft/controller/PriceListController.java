@@ -1,19 +1,18 @@
 package solutions.javasoft.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import solutions.javasoft.dao.model.PriceList;
 import solutions.javasoft.dao.model.Product;
 import solutions.javasoft.dao.repository.PriceListRepository;
 import solutions.javasoft.dao.repository.ProductRepository;
 import solutions.javasoft.dto.PriceListDto;
 
+import java.util.List;
 import java.util.Optional;
 
 @RequestMapping("priceList")
+@CrossOrigin("http://localhost:4200")
 @RestController
 public class PriceListController {
 
@@ -35,5 +34,10 @@ public class PriceListController {
         priceList.setDescription(priceListDto.getDescription());
         priceList.setProduct(product.get());
         return Optional.of(priceListRepository.save(priceList));
+    }
+
+    @GetMapping
+    public Iterable<PriceList> getPriceList() {
+        return priceListRepository.findAll();
     }
 }
