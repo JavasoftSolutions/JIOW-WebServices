@@ -8,7 +8,6 @@ import solutions.javasoft.dao.repository.PriceListRepository;
 import solutions.javasoft.dao.repository.ProductRepository;
 import solutions.javasoft.dto.PriceListDto;
 
-import java.util.List;
 import java.util.Optional;
 
 @RequestMapping("priceList")

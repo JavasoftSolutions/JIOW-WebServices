@@ -1,5 +1,6 @@
 package solutions.javasoft.controller;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import solutions.javasoft.dao.model.Product;
@@ -14,9 +15,14 @@ public class ProductController {
     private ProductRepository productRepository;
 
     @GetMapping
-    public Iterable<Product> getProducts() {
-        return productRepository.findAll();
+    public Iterable<Product> getProducts(@RequestParam String code) {
+
+        if (StringUtils.isEmpty(code)) {
+            return productRepository.findAll();
+        }
+        return productRepository.findByIdContaining(code + "%");
     }
+
 
     @PostMapping
     public Product createProduct(@RequestBody Product product) {
